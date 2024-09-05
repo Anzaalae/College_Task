@@ -1,0 +1,15 @@
+#ifndef ADDER_H
+#define ADDER_H
+
+#include <iostream>
+
+using namespace std;
+
+class Adder{
+    int op1, op2;
+    public:
+    Adder(int a, int b);
+    int process();
+};
+
+#endif
