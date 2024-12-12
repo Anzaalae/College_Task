@@ -3,7 +3,6 @@ import pymysql
 
 app = Flask(__name__)
 
-# 데이터베이스 연결
 def connect_to_db():
     return pymysql.connect(
         host='192.168.56.101',
@@ -13,7 +12,6 @@ def connect_to_db():
         db='club_management',
     )
 
-# 데이터 삽입 API
 @app.route('/insert', methods=['POST'])
 def insert_data():
     try:
@@ -38,10 +36,6 @@ def insert_data():
                 "Performance": ["PerformanceName", "Description", "MemberID"]
             }
 
-            # 입력 검증
-            if table not in columns:
-                return jsonify({"error": f"Unknown table: {table}"}), 400
-
             # 동적으로 INSERT 쿼리 생성
             table_columns = columns[table]
             placeholders = ", ".join([f"%({col})s" for col in table_columns])  # %(컬럼명)s로 매핑
@@ -59,7 +53,6 @@ def insert_data():
         conn.close()
 
 
-# 데이터 검색 API
 @app.route('/search', methods=['GET'])
 def search_data():
     print("\n검색할 테이블을 선택하세요:")
@@ -237,7 +230,7 @@ def delete_data():
 # 메인 HTML 페이지
 @app.route('/')
 def home():
-    return render_template('index.html')  # HTML 파일 제공
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
