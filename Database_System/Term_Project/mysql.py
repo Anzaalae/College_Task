@@ -1,36 +1,6 @@
-# import pymysql
-
-# conn = pymysql.connect(
-#     host='192.168.56.101', 
-#     port=4567,
-#     user='root', 
-#     password='1234', 
-#     db='madang', 
-# )
-
-# try:
-#     # 연결 성공 시
-#     with conn.cursor() as cursor:
-#         # 실행할 쿼리
-#         query = "SELECT * FROM Book"  # 예제: books 테이블에서 모든 데이터를 가져옴
-#         cursor.execute(query)
-
-#         # 결과 가져오기
-#         results = cursor.fetchall()
-
-#         # 결과 출력
-#         print("Book 테이블 데이터:")
-#         for row in results:
-#             print(row)
-
-# finally:
-#     # 연결 종료
-#     conn.close()
-
 import pymysql
 
 def connect_to_db():
-    """MySQL 데이터베이스 연결"""
     return pymysql.connect(
         host='192.168.56.101', 
         port=4567,
@@ -40,7 +10,6 @@ def connect_to_db():
     )
 
 def insert_into_table(conn):
-    """데이터 삽입 기능"""
     try:
         with conn.cursor() as cursor:
             print("\n삽입할 테이블을 선택하세요:")
@@ -148,7 +117,6 @@ def insert_into_table(conn):
         print(f"오류 발생: {e}")
 
 def search_in_table(conn):
-    """검색 기능"""
     try:
         with conn.cursor() as cursor:
             print("\n검색할 테이블을 선택하세요:")
@@ -199,7 +167,6 @@ def search_in_table(conn):
         print(f"오류 발생: {e}")
 
 def delete_from_table(conn):
-    """삭제 기능"""
     try:
         with conn.cursor() as cursor:
             print("\n삭제할 테이블을 선택하세요:")
@@ -235,9 +202,9 @@ def delete_from_table(conn):
         print(f"오류 발생: {e}")
 
 def main():
-    print("------------------------------------------------------------")
+    print("-------------------------------------------------------------------")
     print("1. connection 2. insert data 3. search data 4. delete data 5. quit")
-    print("------------------------------------------------------------")
+    print("-------------------------------------------------------------------")
 
     conn = None
 
